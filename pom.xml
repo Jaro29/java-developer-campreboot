@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>pl.coderslab</groupId>
+    <artifactId>java-developer-campreboot</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <!-- KLUCZOWE: Typ pakowania 'pom' oznacza, że to jest projekt spinający inne -->
+    <packaging>pom</packaging>
+
+    <properties>
+        <maven.compiler.target>19</maven.compiler.target>
+        <maven.compiler.source>19</maven.compiler.source>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <!-- LISTA PODKATALOGÓW (MODUŁÓW) -->
+    <modules>
+
+
+        <module>ONL_JEE_W_16_Podstawy_Java-main</module>
+        <module>ONL_JEE_W_16_Podstawy_Java_Praca_Domowa-main</module>
+        <module>ONL_JEE_W_16_Prework_Java</module>
+
+    </modules>
+
+    <!-- ZALEŻNOŚCI DLA WSZYSTKICH MODUŁÓW -->
+    <dependencies>
+        <dependency>
+            <groupId>com.github.stefanbirkner</groupId>
+            <artifactId>system-rules</artifactId>
+            <version>1.19.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.1</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.5.13</version>
+        </dependency>
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>3.27.7</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.github.javaparser</groupId>
+            <artifactId>javaparser-core</artifactId>
+            <version>3.14.159265359</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>32.0.1-android</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.36</version>
+        </dependency>
+        <!-- Zależności dla Spring MVC (w tym AnnotationConfigWebApplicationContext, DispatcherServlet) -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>5.3.39</version> <!-- Możesz użyć nowszej z linii 5.x.x, np. 5.3.39 lub 6.1.14 zależnie od wersji używanej w kursie -->
+        </dependency>
+
+        <!-- Zależności dla Servletów (w tym ServletContext, ServletRegistration) -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>4.0.1</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.13.0</version>
+                <configuration>
+                    <source>19</source>
+                    <target>19</target>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>1.18.40</version>
+                        </path>
+                    </annotationProcessorPaths>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
