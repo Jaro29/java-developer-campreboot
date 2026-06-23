@@ -1,34 +1,41 @@
 package pl.coderslab.files;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Locale;
 
-public class Main03 {
+public class Main02a {
 
     public static void main(String[] args) {
+        // Wymuszamy polską lokalizację dla spójności ewentualnych komunikatów
         Locale.setDefault(Locale.of("pl", "PL"));
-        String fileName = "text2.txt";
-        sumValidNumbersFromFile(fileName);
 
+        // Uruchomienie metody odczytującej plik
+        readTextFromFile();
     }
 
-    public static void sumValidNumbersFromFile(String fileName) {
-        System.out.printf("=== Wczytywanie pliku %s, parsowanie zawartości... ===\n", fileName);
-        double sum = 0;
+    /**
+     * Odczytuje zawartość pliku text1.txt linia po linii i wypisuje ją na konsoli.
+     */
+    public static void readTextFromFile() {
+        String fileName = "text4.txt";
+        System.out.println("=== Zawartość pliku " + fileName + " ===\n");
+
+        // Stosujemy łańcuch strumieni w try-with-resources:
+        // FileReader (otwiera plik do odczytu) -> BufferedReader (buforuje dla wydajności i daje metodę readLine)
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+
             String line;
 
+            // Pętla czyta plik linia po linii.
+            // Metoda reader.readLine() zwraca tekst linii lub wartość 'null', gdy plik się skończy.
             while ((line = reader.readLine()) != null) {
-                String[] lineArray = line.trim().split(", ");
-                for (String s : lineArray) {
-                    if (s.matches("-?\\d+(\\.\\d+)?")) {
-                        sum += Double.parseDouble(s);
-                    }
-                }
+                System.out.println(line);
             }
+
+            System.out.println("\n=== Koniec pliku ===");
 
         } catch (FileNotFoundException e) {
             // Ten blok wykona się, jeśli plik text1.txt nie istnieje w głównym katalogu projektu
@@ -39,7 +46,5 @@ public class Main03 {
             System.out.println("Wystąpił błąd podczas odczytywania pliku: " + fileName);
             e.printStackTrace();
         }
-        System.out.printf("=== Suma liczb zawartych w pliku %s wynosi %.2f ===\n\n\n", fileName, sum);
-
     }
 }
