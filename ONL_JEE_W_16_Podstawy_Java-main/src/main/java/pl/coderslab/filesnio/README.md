@@ -72,3 +72,10 @@ Przykład:
 </html>
 
 ```
+
+## Zadanie 6
+
+W pliku AiTask01.java napisz metodę, która sprawdzi, czy istnieje plik o nazwie notatki.txt. Jeśli istnieje, 
+program ma stworzyć jego kopię bezpieczeństwa o nazwie backup_notatki.txt, 
+automatycznie nadpisując stary backup, jeśli ten już istniał. Na koniec 
+program ma bezpiecznie usunąć oryginalny plik notatki.txt
