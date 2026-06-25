@@ -9,16 +9,15 @@ import java.util.Scanner;
 public class Main05 {
 
     public static void main(String[] args) {
-        Locale.setDefault(Locale.of("pl","PL"));
-        try {
-            File file = new File("text5.txt");
-            Scanner scan = new Scanner(file);
-            String text;
-            String[] textTab = new String[1];
+        Locale.setDefault(Locale.of("pl", "PL"));
+        File file = new File("text5.txt");
+        try (Scanner scan = new Scanner(file)) {
+
+            String[] textTab = new String[0];
             int i = 0;
             while (scan.hasNextLine()) {
-                text = scan.nextLine();
-                textTab = Arrays.copyOf(textTab, i+1);
+                String text = scan.nextLine().trim();
+                textTab = Arrays.copyOf(textTab, i + 1);
                 textTab[i] = text;
                 i++;
             }

@@ -18,9 +18,25 @@ public class Main02 {
                 min = randNumbers[i];
             }
         }
+
+
         System.out.print(Arrays.toString(randNumbers));
-        System.out.println();
+        System.out.print("\nNajmniejsz liczba to: ");
         System.out.println(min);
+
+        // Sortowanie bąbelkowe
+        for (int i = 0; i < randNumbers.length - 1; i++) {
+            for (int j = 0; j < randNumbers.length - 1 - i; j++) {
+                if (randNumbers[j] > randNumbers[j + 1]) {
+                    int temp = randNumbers[j];
+                    randNumbers[j] = randNumbers[j + 1];
+                    randNumbers[j + 1] = temp;
+                }
+            }
+        }
+        System.out.print("\nposortowana tablica:\n");
+        System.out.print(Arrays.toString(randNumbers));
+
     }
 }
 /*
