@@ -79,3 +79,48 @@ W pliku AiTask01.java napisz metodę, która sprawdzi, czy istnieje plik o nazwi
 program ma stworzyć jego kopię bezpieczeństwa o nazwie backup_notatki.txt, 
 automatycznie nadpisując stary backup, jeśli ten już istniał. Na koniec 
 program ma bezpiecznie usunąć oryginalny plik notatki.txt
+
+## Zadanie 7
+
+W pliku AiTask02.java napisz program, który 
+pobierze z konsoli nazwę pliku (użyj do tego swojej 
+bezpiecznej metody, np. readString). Program ma 
+sprawdzić, czy podany plik istnieje. Jeśli istnieje, 
+ma zmienić jego nazwę, dodając na początku słowo 
+zarchiwizowane_ (wykorzystaj do tego metodę Files.move()). 
+Jeśli plik nie istnieje, program ma poinformować użytkownika o błędzie i... 
+zapytać o nazwę pliku jeszcze raz (czyli pętla ma się kręcić, 
+dopóki użytkownik nie poda nazwy pliku, który realnie istnieje na dysku).
+
+## Zadanie 8
+
+W pliku AiTask03.java napisz program, który poprosi użytkownika o 
+podanie ścieżki do pliku tekstowego. Program ma sprawdzić:Czy podana 
+ścieżka istnieje (Files.exists),Czy podana ścieżka na pewno prowadzi do 
+zwykłego pliku, a nie do folderu (wykorzystaj do tego metodę 
+Files.isRegularFile(path)).Jeśli oba warunki są spełnione, program ma 
+za pomocą jednej linijki (Files.readString(path)) wczytać cały ten 
+plik, wyświetlić jego zawartość na ekranie oraz podać informację, 
+z ilu dokładnie znaków składa się ten tekst. Jeśli któryś warunek 
+zawiedzie – program ma ponowić pytanie.
+
+## Zadanie 9
+
+### Analizator Ścieżki
+
+W pliku `AiTask04.java` napisz program, który poprosi użytkownika o podanie 
+dowolnej ścieżki (pliku lub folderu). Program ma sprawdzić, czy ta ścieżka 
+w ogóle istnieje na dysku.
+
+Jeśli istnieje, program ma wyświetlić o niej następujące informacje:
+* Czy jest to zwykły plik, czy katalog (folder) (użyj `Files.isRegularFile` oraz `Files.isDirectory`).
+* Samą nazwę końcową (użyj `path.getFileName()`).
+* Ścieżkę do katalogu nadrzędnego (użyj `path.getParent()`).
+* Liczbę elementów (folderów) składających się na tę ścieżkę (użyj `path.getNameCount()`).
+
+Jeśli podana ścieżka nie istnieje – program ma poinformować o tym użytkownika 
+i poprosić o podanie nowej (pętla kręci się do skutku).
+
+**Podpowiedź na start:** Pamiętaj o architekturze z poprzednich zadań – pętlę 
+sprawdzającą istnienie najlepiej zamknąć w metodzie pobierającej dane, tak aby metoda 
+biznesowa dostała już pewną, istniejącą ścieżkę.

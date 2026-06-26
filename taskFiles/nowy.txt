@@ -1,0 +1,11 @@
+## Zadanie 8
+
+W pliku AiTask03.java napisz program, który poprosi użytkownika o
+podanie ścieżki do pliku tekstowego. Program ma sprawdzić:Czy podana
+ścieżka istnieje (Files.exists),Czy podana ścieżka na pewno prowadzi do
+zwykłego pliku, a nie do folderu (wykorzystaj do tego metodę
+Files.isRegularFile(path)).Jeśli oba warunki są spełnione, program ma
+za pomocą jednej linijki (Files.readString(path)) wczytać cały ten
+plik, wyświetlić jego zawartość na ekranie oraz podać informację, z
+ilu dokładnie znaków składa się ten tekst. Jeśli któryś warunek
+zawiedzie – program ma ponowić pytanie.
