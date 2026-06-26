@@ -10,17 +10,9 @@ public class AiTask04 {
 
     public static void main(String[] args) {
         Locale.setDefault(Locale.of("pl", "PL"));
-        try(Scanner mainScanner = new Scanner(System.in)){
-            String pathToAnalyze;
-            while(true){
-                pathToAnalyze = getString(mainScanner);
-                if(!pathExistsCheck(pathToAnalyze)){
-                    continue;
-                }
-                pathAnalyzer(pathToAnalyze);
-                break;
-            }
-        }
+        Scanner mainScanner = new Scanner(System.in);
+        String existingPath = getExistingPathString(mainScanner);
+        pathAnalyzer(existingPath);
     }
 
     public static void pathAnalyzer(String pathToAnalyze) {
@@ -36,28 +28,24 @@ public class AiTask04 {
         System.out.printf("Ścieżka '%s' składa się z %d elementów", pathToAnalyze, path.getNameCount());
     }
 
-    private static boolean pathExistsCheck(String pathToCheck) {
-        Path path = Path.of(pathToCheck);
-
-        if (!Files.exists(path)) {
-            System.out.println("Błąd! Niepoprawna ścieżka");
-            return false;
-        }
-        return true;
-    }
-
-    private static String getString(Scanner scanner) {
+    private static String getExistingPathString(Scanner scanner) {
         int consecutiveEnters = 0;
         while (true) {
-            System.out.printf("Podaj ścieżkę do pliku lub folderu.%n > ");
+            String message = "Podaj ścieżkę do pliku lub folderu.\n> ";
+            System.out.printf(message);
             try {
                 String input = scanner.nextLine().trim();
                 if (input.isEmpty()) {
                     consecutiveEnters++;
                     if (consecutiveEnters >= 2) {
-                        System.out.println("-> Wskazówka: Pole nie może być puste. Wpisz swoje imię.");
+                        System.out.printf("-> Wskazówka: Pole nie może być puste.%n");
                         consecutiveEnters = 0;
                     }
+                    continue;
+                }
+                Path path = Path.of(input);
+                if (!Files.exists(path)) {
+                    System.out.println("Błąd! Niepoprawna ścieżka");
                     continue;
                 }
                 return input;

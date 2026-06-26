@@ -124,3 +124,11 @@ i poprosić o podanie nowej (pętla kręci się do skutku).
 **Podpowiedź na start:** Pamiętaj o architekturze z poprzednich zadań – pętlę 
 sprawdzającą istnienie najlepiej zamknąć w metodzie pobierającej dane, tak aby metoda 
 biznesowa dostała już pewną, istniejącą ścieżkę.
+
+## Zadanie 10
+W pliku AiTask05.java napisz program, który: 
+1. Pobierze od użytkownika nazwę nowego projektu (zwykły tekst, np. MojaAplikacja).
+2. Stworzy katalog o tej nazwie (użyj Files.createDirectory).
+3. Wewnątrz tego nowo utworzonego katalogu stworzy automatycznie dwa podfoldery: o nazwie src oraz o nazwie resources (użyj Files.createDirectories lub po prostu odpowiednio złóż ścieżki).
+4. Na koniec, wewnątrz folderu resources, stworzy pusty plik o nazwie config.properties (użyj Files.createFile).
+Program ma oczywiście sprawdzać, czy taki projekt już nie istnieje, aby nie nadpisać danych użytkownika.
