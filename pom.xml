@@ -22,6 +22,7 @@
         <module>ONL_JEE_W_16_Podstawy_Java-main</module>
         <module>ONL_JEE_W_16_Podstawy_Java_Praca_Domowa-main</module>
         <module>ONL_JEE_W_16_Prework_Java</module>
+        <module>ONL_JEE_W_16_OOP-main</module>
     </modules>
 
     <!-- ZALEŻNOŚCI DLA WSZYSTKICH MODUŁÓW -->

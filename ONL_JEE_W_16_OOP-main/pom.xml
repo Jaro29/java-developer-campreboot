@@ -8,9 +8,7 @@
         <artifactId>java-developer-campreboot</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    <groupId>pl.coderslab</groupId>
     <artifactId>java-oop</artifactId>
-    <version>1.0-SNAPSHOT</version>
     <properties>
         <maven.compiler.target>11</maven.compiler.target>
         <maven.compiler.source>11</maven.compiler.source>
