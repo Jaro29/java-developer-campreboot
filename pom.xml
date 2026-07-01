@@ -23,6 +23,7 @@
         <module>ONL_JEE_W_16_Podstawy_Java_Praca_Domowa-main</module>
         <module>ONL_JEE_W_16_Prework_Java</module>
         <module>ONL_JEE_W_16_OOP-main</module>
+        <module>ONL_JEE_W_16_MySQL-main</module>
     </modules>
 
     <!-- ZALEŻNOŚCI DLA WSZYSTKICH MODUŁÓW -->
@@ -63,6 +64,11 @@
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
             <version>32.0.1-android</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mariadb.jdbc</groupId>
+            <artifactId>mariadb-java-client</artifactId>
+            <version>3.5.9</version>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
