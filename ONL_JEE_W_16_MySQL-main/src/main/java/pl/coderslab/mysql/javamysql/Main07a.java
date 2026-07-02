@@ -11,7 +11,7 @@ import java.util.Scanner;
 import static pl.coderslab.mysql.javamysql.DbUtil.bookExists;
 import static pl.coderslab.mysql.javamysql.Query.*;
 
-public class Main07 {
+public class Main07a {
 
     static final String[] VALID_OPTIONS = {"d", "u", "e", "x"};
     static final String[] VALID_YES_NO = {"T", "N"};
@@ -19,7 +19,7 @@ public class Main07 {
     public static void main(String[] args) {
 
         Locale.setDefault(Locale.of("pl", "PL"));
-        System.out.println("Oto książki w Twojej bazie:");
+        System.out.println(ConsoleColors.CYAN_BOLD + "=== Katalog książek ===" + ConsoleColors.RESET);
         listBooks();
         runMenu();
     }
@@ -35,19 +35,19 @@ public class Main07 {
     private static void runMenu() {
         try (Scanner scanner = new Scanner(System.in)) {
             while (true) {
-                String task = readOptionString(scanner, ConsoleColors.BLUE + "Wpisz co chcesz zrobić:\n" + ConsoleColors.RESET +
-                        "dodać książkę - d\n" +
-                        "usunąć książkę - u\n" +
-                        "edytować książkę - e\n" +
-                        "wyjść z programu - x\n" +
-                        "-> ");
+                String task = readOptionString(scanner, ConsoleColors.BLUE + "Wybierz opcję:\n" + ConsoleColors.RESET +
+                        "  d - dodaj książkę\n" +
+                        "  u - usuń książkę\n" +
+                        "  e - edytuj książkę\n" +
+                        "  x - zakończ program\n" +
+                        ConsoleColors.BLUE + "-> " + ConsoleColors.RESET);
 
                 switch (task) {
                     case "d" -> addBook(scanner);
                     case "u" -> removeBook(scanner);
                     case "e" -> updateBook(scanner);
                     case "x" -> {
-                        System.out.println("Wyjście z programu.");
+                        System.out.println(ConsoleColors.CYAN_BOLD + "Do zobaczenia!" + ConsoleColors.RESET);
                         return;
                     }
                     default ->
@@ -66,19 +66,21 @@ public class Main07 {
                 if (bookExists(conn, id)) {
                     break;
                 }
-                System.out.println("-> Książka o ID " + id + " nie istnieje. Spróbuj jeszcze raz: ");
+                System.out.println(ConsoleColors.RED + "-> Książka o ID " + id + " nie istnieje. Spróbuj ponownie." + ConsoleColors.RESET);
             }
 
-            String message = "Potwierdź, że chcesz usunąć książkę, T - tak / N - nie\n-> ";
+            String message = ConsoleColors.YELLOW + "Czy na pewno chcesz usunąć tę książkę? (T/N)\n-> " + ConsoleColors.RESET;
 
             if (readYesNoString(scanner, message).equalsIgnoreCase("N")) {
-                System.out.println("Anulowano usuwanie.");
+                System.out.println(ConsoleColors.YELLOW + "Anulowano usuwanie." + ConsoleColors.RESET);
                 return; // Wyjście z metody i automatyczny powrót do pętli w runMenu()
             } else {
                 DbUtil.remove(conn, "books", "book_id", id);
+                System.out.println(ConsoleColors.GREEN + "-> Książka została usunięta." + ConsoleColors.RESET);
             }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            System.out.println(ConsoleColors.RED + "-> Błąd podczas usuwania książki." + ConsoleColors.RESET);
+            e.printStackTrace();
         }
         listBooks();
     }
@@ -91,13 +93,15 @@ public class Main07 {
                 if (bookExists(conn, id)) {
                     break;
                 }
-                System.out.println("-> Książka o ID " + id + " nie istnieje. Spróbuj jeszcze raz: ");
+                System.out.println(ConsoleColors.RED + "-> Książka o ID " + id + " nie istnieje. Spróbuj ponownie." + ConsoleColors.RESET);
             }
-            String title = readString(scanner, "Podaj tytuł: ");
-            String price = String.valueOf(readPositiveDouble(scanner, "Podaj cenę: "));
+            String title = readString(scanner, "Podaj nowy tytuł: ");
+            String price = String.valueOf(readPositiveDouble(scanner, "Podaj nową cenę: "));
             DbUtil.update(conn, title, price, id);
+            System.out.println(ConsoleColors.GREEN + "-> Książka została zaktualizowana." + ConsoleColors.RESET);
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            System.out.println(ConsoleColors.RED + "-> Błąd podczas aktualizacji książki." + ConsoleColors.RESET);
+            e.printStackTrace();
         }
         listBooks();
     }
@@ -108,9 +112,9 @@ public class Main07 {
             String title = readString(scanner, "Podaj tytuł: ");
             String price = String.valueOf(readPositiveDouble(scanner, "Podaj cenę: "));
             DbUtil.insert(conn, INSERT_BOOK_QUERY, title, price);
-            System.out.printf("-> Dodano książkę: %s%n", title);
+            System.out.println(ConsoleColors.GREEN + "-> Dodano książkę: " + title + ConsoleColors.RESET);
         } catch (SQLException e) {
-            System.out.println("-> Błąd zapisu do bazy danych.");
+            System.out.println(ConsoleColors.RED + "-> Błąd zapisu do bazy danych." + ConsoleColors.RESET);
             e.printStackTrace();
         }
         listBooks();
@@ -127,13 +131,13 @@ public class Main07 {
                 if (input.isEmpty()) {
                     consecutiveEnters++;
                     if (consecutiveEnters >= 2) {
-                        System.out.println("-> Wskazówka: Pole nie może być puste.");
+                        System.out.println(ConsoleColors.YELLOW + "-> Wskazówka: Pole nie może być puste." + ConsoleColors.RESET);
                         consecutiveEnters = 0;
                     }
                     continue;
                 }
                 if (!isValidYesNo(input)) {
-                    System.out.println(ConsoleColors.RED + "Błąd! Spróbuj jeszcze raz." + ConsoleColors.RESET);
+                    System.out.println(ConsoleColors.RED + "Błąd! Wpisz T lub N." + ConsoleColors.RESET);
                     consecutiveEnters = 0;
                     continue;
                 }
@@ -156,7 +160,7 @@ public class Main07 {
                 if (input.isEmpty()) {
                     consecutiveEnters++;
                     if (consecutiveEnters >= 2) {
-                        System.out.println("-> Wskazówka: Pole nie może być puste.");
+                        System.out.println(ConsoleColors.YELLOW + "-> Wskazówka: Pole nie może być puste." + ConsoleColors.RESET);
                         consecutiveEnters = 0;
                     }
                     continue;
@@ -181,7 +185,7 @@ public class Main07 {
             if (value > 0.0) {
                 return value;
             }
-            System.out.println("Błąd: podałeś ujemną cenę.");
+            System.out.println(ConsoleColors.RED + "Błąd: cena musi być większa od zera." + ConsoleColors.RESET);
         }
     }
 
@@ -197,7 +201,7 @@ public class Main07 {
                 if (input.isEmpty()) {
                     consecutiveEnters++;
                     if (consecutiveEnters >= 2) {
-                        System.out.println("Wskazówka: Musisz wprowadzić wartość liczbową, aby przejść dalej.");
+                        System.out.println(ConsoleColors.YELLOW + "Wskazówka: Musisz wprowadzić wartość liczbową." + ConsoleColors.RESET);
                         consecutiveEnters = 0;
                     }
                     continue;
@@ -212,7 +216,7 @@ public class Main07 {
                         }
                     }
                 }
-                System.out.println("Błąd: Wprowadzona wartość nie jest poprawna.");
+                System.out.println(ConsoleColors.RED + "Błąd: wprowadzona wartość nie jest poprawną liczbą." + ConsoleColors.RESET);
 
             } catch (NoSuchElementException | IllegalStateException e) {
                 handleClosedStream(e);
@@ -232,7 +236,7 @@ public class Main07 {
                 if (input.isEmpty()) {
                     consecutiveEnters++;
                     if (consecutiveEnters >= 2) {
-                        System.out.println("-> Wskazówka: Pole nie może być puste.");
+                        System.out.println(ConsoleColors.YELLOW + "-> Wskazówka: Pole nie może być puste." + ConsoleColors.RESET);
                         consecutiveEnters = 0;
                     }
                     continue;
@@ -256,7 +260,7 @@ public class Main07 {
                 if (input.isEmpty()) {
                     consecutiveEnters++;
                     if (consecutiveEnters >= 2) {
-                        System.out.println("-> Wskazówka: Pole nie może być puste.");
+                        System.out.println(ConsoleColors.YELLOW + "-> Wskazówka: Pole nie może być puste." + ConsoleColors.RESET);
                         consecutiveEnters = 0;
                     }
                     continue;
@@ -270,12 +274,12 @@ public class Main07 {
                             if (value >= 0) {
                                 return value;
                             }
-                            System.out.println("Błąd: Identyfikator nie jest liczbą ujemną.");
+                            System.out.println(ConsoleColors.RED + "Błąd: identyfikator nie może być liczbą ujemną." + ConsoleColors.RESET);
                             continue;
                         }
                     }
                 }
-                System.out.println("Błąd: Wprowadzona wartość nie jest poprawną liczbą całkowitą.");
+                System.out.println(ConsoleColors.RED + "Błąd: wprowadzona wartość nie jest poprawną liczbą całkowitą." + ConsoleColors.RESET);
 
             } catch (NoSuchElementException | IllegalStateException e) {
                 handleClosedStream(e);
@@ -298,7 +302,7 @@ public class Main07 {
     }
 
     private static void handleClosedStream(Exception e) {
-        System.out.println("\n[Krytyczny błąd] Strumień konsoli został zamknięty (Ctrl+D). Zamykanie programu...");
+        System.out.println(ConsoleColors.RED + "\n[Krytyczny błąd] Strumień konsoli został zamknięty (Ctrl+D). Zamykanie programu..." + ConsoleColors.RESET);
         System.exit(1);
     }
 }

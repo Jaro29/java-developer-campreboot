@@ -1,6 +1,5 @@
 package pl.coderslab.mysql.javamysql;
 
-
 /**
  * https://stackoverflow.com/a/45444716
  */

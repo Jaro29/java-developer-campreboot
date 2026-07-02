@@ -41,7 +41,15 @@ public class DbUtil {
         }
     }
 
-    public static void remove(Connection conn, String tableName, String idColumnName, int id) {
+    public static void remove(Connection conn, String tableName, String idColumnName, int id) throws SQLException {
+        String query = String.format(DELETE_QUERY, tableName, idColumnName);
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.setInt(1, id);
+            statement.executeUpdate();
+        }
+    }
+/*
+    public static void remove(Connection conn, String tableName, String idColumnName, int id) throws SQLException{
         String query = DELETE_QUERY.replace("tableName", tableName).replace("id", idColumnName);
         try (PreparedStatement statement = conn.prepareStatement(query)) {
             statement.setInt(1, id);
@@ -50,8 +58,9 @@ public class DbUtil {
             e.printStackTrace();
         }
     }
+*/
 
-    public static void update(Connection conn, String title, String price, int id){
+    public static void update(Connection conn, String title, String price, int id) throws SQLException{
         try(PreparedStatement statement = conn.prepareStatement(UPDATE_BOOK_QUERY)){
             statement.setString(1, title);
             statement.setString(2, price);
