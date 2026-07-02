@@ -3,7 +3,7 @@ package pl.coderslab.mysql.javamysql;
 
 import java.sql.*;
 
-import static pl.coderslab.mysql.javamysql.Query.DELETE_QUERY;
+import static pl.coderslab.mysql.javamysql.Query.*;
 
 public class DbUtil {
 
@@ -48,6 +48,25 @@ public class DbUtil {
             statement.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    public static void update(Connection conn, String title, String price, int id){
+        try(PreparedStatement statement = conn.prepareStatement(UPDATE_BOOK_QUERY)){
+            statement.setString(1, title);
+            statement.setString(2, price);
+            statement.setInt(3, id); // ID klienta do zmiany
+            statement.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static boolean bookExists(Connection conn, int bookId) throws SQLException {
+        try (PreparedStatement statement = conn.prepareStatement(SELECT_BOOK_QUERY)) {
+            statement.setInt(1, bookId);
+            ResultSet rs = statement.executeQuery();
+            return rs.next(); // true = znaleziono wiersz, false = brak
         }
     }
 }
