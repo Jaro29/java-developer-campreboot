@@ -24,6 +24,7 @@
         <module>ONL_JEE_W_16_Prework_Java</module>
         <module>ONL_JEE_W_16_OOP-main</module>
         <module>ONL_JEE_W_16_MySQL-main</module>
+        <module>ONL_JEE_W_16_Servlety-main</module>
     </modules>
 
     <!-- ZALEŻNOŚCI DLA WSZYSTKICH MODUŁÓW -->

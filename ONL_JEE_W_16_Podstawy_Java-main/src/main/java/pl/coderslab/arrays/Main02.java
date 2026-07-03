@@ -21,7 +21,7 @@ public class Main02 {
 
 
         System.out.print(Arrays.toString(randNumbers));
-        System.out.print("\nNajmniejsz liczba to: ");
+        System.out.print("\nNajmniejsza liczba to: ");
         System.out.println(min);
 
         // Sortowanie bąbelkowe
