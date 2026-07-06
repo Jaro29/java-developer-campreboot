@@ -20,6 +20,14 @@ public class Servlet11 extends HttpServlet {
         response.setContentType("text/html");
         response.setCharacterEncoding("UTF-8");
 
-        response.getWriter().append("<h1>Content11</h1>"); // Wypisze się w przeglądarce
+        response.getWriter().append("<h1>Content11</h1>");
+        response.getWriter().append("<h1>Hello world.</h1>");// Wypisze się w przeglądarce
+
+        String ipAddress = request.getRemoteAddr();
+        String browser = request.getHeader("User-Agent");
+
+        response.getWriter().append("<h1>Adres IP:</h1>");// Wypisze się w przeglądarce
+        response.getWriter().append(ipAddress);// Wypisze się w przeglądarce
+        response.getWriter().append(browser);// Wypisze się w przeglądarce
     }
 }
