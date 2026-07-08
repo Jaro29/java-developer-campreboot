@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Konwerter km na mile</title>
+</head>
+<body>
+<h1>Konwerter kilometrów na mile</h1>
+
+<p>Podana wartość (km): <span th:text="${km}">brak</span></p>
+
+<div th:if="${miles != null}">
+    <p>Wynik: <span th:text="${miles}">0</span> mili</p>
+</div>
+<div th:unless="${miles != null}">
+    <p style="color: red;">Podaj poprawną liczbę w parametrze ?km=...</p>
+</div>
+</body>
+</html>

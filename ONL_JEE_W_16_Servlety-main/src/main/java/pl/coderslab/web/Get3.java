@@ -25,7 +25,8 @@ public class Get3 extends HttpServlet {
 //                Integer.parseInt(request.getParameter("height")) : 10;
         int width = getIntParameterOrDefault(request, "width", 5);
         int height = getIntParameterOrDefault(request, "height", 10);
-        writer.append("<table>");
+        writer.append("<html lang=\"pl\"><head><meta charset=\"UTF-8\">" +
+                "<link rel=\"stylesheet\" href=\"style.css\"></head><body><table><tbody>");
         for (int i = 1; i <= height; i++) {
             writer.append("<tr>"); // Otwieramy wiersz
             for (int j = 1; j <= width; j++) {
@@ -34,7 +35,7 @@ public class Get3 extends HttpServlet {
             }
             writer.append("</tr>"); // Zamykamy wiersz przed przejściem do następnego!
         }
-        writer.append("</table>");
+        writer.append("</tbody></table></body></html>");
     }
     private int getIntParameterOrDefault(HttpServletRequest request, String paramName, int defaultValue) {
         String value = request.getParameter(paramName);

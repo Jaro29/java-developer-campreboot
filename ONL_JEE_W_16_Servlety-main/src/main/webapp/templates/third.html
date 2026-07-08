@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Third</title>
+</head>
+<body>
+<h1>Third servlet</h1>
+
+<div th:if="${paramA != null}">
+    <p><span th:text="${paramA}"></span></p>
+</div>
+<div th:unless="${paramA != null}">
+    <p style="color: red;">Brak</p>
+</div>
+</body>
+</html>

@@ -5,6 +5,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.extern.slf4j.Slf4j;
+
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -12,6 +14,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+@Slf4j
 @WebServlet("/post2")
 public class Form2a extends HttpServlet {
 
@@ -26,7 +29,7 @@ public class Form2a extends HttpServlet {
         String html = "<html><head><meta charset=\"UTF-8\"></head><body>%s</body></html>";
         String text = request.getParameter("textarea");
         boolean censorChecked = request.getParameter("censor") != null;
-
+        log(String.valueOf(censorChecked));
         PrintWriter writer = response.getWriter();
 
         if (!censorChecked && text != null) { // Dodany null-check!

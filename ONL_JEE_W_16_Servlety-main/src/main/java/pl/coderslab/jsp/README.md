@@ -1,3 +1,21 @@
+
+## Zadanie 1 (odpowiednik dawnego Zadania 1 z README-4)
+
+Stwórz servlet `KmToMile` pod `/km-to-mile`:
+
+1. W `doGet` pobierz parametr `km` z requesta.
+2. Przelicz na mile (1 km = 0.62 mili), zabezpiecz się przed `null`/pustym/błędnym wejściem.
+3. Ustaw wynik w `WebContext` pod kluczem `miles` oraz oryginalne `km`.
+4. Wywołaj `templateEngine.process("first", webContext, response.getWriter())`.
+5. Stwórz plik `webapp/templates/first.html` — wyświetl wynik za pomocą `th:text="${miles}"`.
+
+Podpowiedź do `WebContext` w servlecie:
+```java
+var webContext = new WebContext(request, response, request.getServletContext(), request.getLocale());
+webContext.setVariable("km", km);
+webContext.setVariable("miles", miles);
+```
+
 ## Zadanie 1 - rozwiązywane z wykładowcą
 
 W projekcie stwórz stronę `first.jsp`. Następnie: 

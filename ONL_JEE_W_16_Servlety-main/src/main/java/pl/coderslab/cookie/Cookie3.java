@@ -26,7 +26,7 @@ public class Cookie3 extends HttpServlet {
             cookie.setSecure(false);
             cookie.setAttribute("SameSite", "Lax");
             response.addCookie(cookie);
-            response.getWriter().append("<h3>Ciasteczko " + key + " zostało zapisane bezpiecznie!</h3>");
+            response.getWriter().append("<h3>Ciasteczko " + key + "  zostało zapisane bezpiecznie!</h3>");
         }
     }
     private int getIntParameterOrDefault(HttpServletRequest request, String paramName, int defaultValue) {
