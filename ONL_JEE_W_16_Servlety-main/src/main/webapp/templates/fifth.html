@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Strona główna</title>
+</head>
+<body>
+<div th:replace="~{layout :: header}"></div>
+
+<main>
+<table>
+    <thead>
+    <tr>
+        <th>Nr</th>
+        <th>Tytuł</th>
+        <th>Autor</th>
+        <th>ISBN</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="book, iterStat : ${books}">
+        <td><span th:text="${iterStat.count}"></span></td>
+        <td><span th:text="${book.title}"></span></td>
+        <td><span th:text="${book.author}"></span></td>
+        <td><span th:text="${book.isbn}"></span></td>
+    </tr>
+    </tbody>
+</table>
+</main>
+
+<div th:replace="~{layout :: footer}"></div>
+</body>
+</html>

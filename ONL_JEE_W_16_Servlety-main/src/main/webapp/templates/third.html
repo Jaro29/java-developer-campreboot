@@ -7,11 +7,24 @@
 <body>
 <h1>Third servlet</h1>
 
-<div th:if="${paramA != null}">
-    <p><span th:text="${paramA}"></span></p>
+<form action="/third" method="get">
+    <label>Podaj parametr A: <input name="a" type="text"></label><br>
+    <label>Podaj parametr B: <input name="b" type="text"></label><br>
+    <button type="submit">Wyślij</button>
+</form>
+
+<div th:if="${paramA == null or #strings.isEmpty(paramA)}">
+    <p style="color: red;">Brak***A***Brak</p>
 </div>
-<div th:unless="${paramA != null}">
-    <p style="color: red;">Brak</p>
+<div th:if="${paramB == null or #strings.isEmpty(paramB)}">
+    <p style="color: red;">Brak***B***Brak</p>
 </div>
+<div th:unless="${paramA == null or #strings.isEmpty(paramA)}">
+    <p>Parametr A = <span th:text="${paramA}"></span></p>
+</div>
+<div th:unless="${paramB == null or #strings.isEmpty(paramB)}">
+    <p>Parametr B = <span th:text="${paramB}"></span></p>
+</div>
+
 </body>
 </html>

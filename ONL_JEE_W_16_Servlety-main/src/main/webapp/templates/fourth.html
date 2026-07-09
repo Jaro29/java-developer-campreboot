@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Strona główna</title>
+</head>
+<body>
+<div th:replace="~{layout :: header}"></div>
+
+<main>
+    <div th:if="${foo == null or #strings.isEmpty(foo)}">
+        <p style="color: red;">Brak***foo***Brak</p>
+    </div>
+    <div th:if="${bar == null or #strings.isEmpty(bar)}">
+        <p style="color: red;">Brak***bar***Brak</p>
+    </div>
+    <div th:unless="${foo == null or #strings.isEmpty(foo)}">
+        <p>Nazwa cookie = <span th:text="${foo}"></span></p>
+    </div>
+    <div th:unless="${bar == null or #strings.isEmpty(bar)}">
+        <p>Wartość cookie = <span th:text="${bar}"></span></p>
+    </div>
+</main>
+
+<div th:replace="~{layout :: footer}"></div>
+</body>
+</html>

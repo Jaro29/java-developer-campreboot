@@ -14,7 +14,7 @@ import java.io.IOException;
 @WebServlet("/third")
 public class ThirdServlet extends HttpServlet {
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html; charset=UTF-8");
 
         String aParam = request.getParameter("a");
