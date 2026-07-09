@@ -26,6 +26,8 @@
         <module>ONL_JEE_W_16_OOP-main</module>
         <module>ONL_JEE_W_16_MySQL-main</module>
         <module>ONL_JEE_W_16_Servlety-main</module>
+        <module>ONL_JEE_W_16_Spring_Zaawansowana-main</module>
+
     </modules>
 
     <!-- ZALEŻNOŚCI DLA WSZYSTKICH MODUŁÓW -->

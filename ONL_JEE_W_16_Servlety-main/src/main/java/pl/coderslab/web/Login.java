@@ -5,6 +5,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.IContext;
 import pl.coderslab.util.ThymeleafUtil;
@@ -28,6 +29,15 @@ public class Login extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
 
+        if (USER.equals(username) && PASSWORD.equals(password)) {
+            HttpSession session = request.getSession();
+            session.setAttribute("username", username);
+            response.sendRedirect(request.getContextPath() + "/admin");
+        } else {
+            response.sendRedirect(request.getContextPath() + "/login?error=true");
+        }
     }
 }

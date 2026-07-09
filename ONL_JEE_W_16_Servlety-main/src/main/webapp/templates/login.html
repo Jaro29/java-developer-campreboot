@@ -8,6 +8,9 @@
 <div th:replace="~{layout :: header}"></div>
 
 <main>
+    <div th:if="${param.error != null}">
+        <p style="color: red;">Nieprawidłowy login lub hasło.</p>
+    </div>
     <form method="post">
         <label>Login: <input type="text" name="username"></label><br>
         <label>Hasło: <input type="password" name="password"></label><br>
