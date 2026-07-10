@@ -8,10 +8,9 @@ public abstract class Vehicle {
 
     @Override
     public String toString() {
-        return "Class: <" + getClass().getSimpleName() + ">, Vehicle{" +
-                "maxSpeed=" + maxSpeed +
-                ", model='" + model + '\'' +
-                '}' + ", sound: " + getSound();
+        return "Class: " + getClass().getSimpleName() +
+                ", model: " + model + ", maxSpeed: " + maxSpeed +
+                ", sound: " + getSound();
     }
 
     public Integer getMaxSpeed() {
