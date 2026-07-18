@@ -16,9 +16,10 @@ public class Main01 {
                 if (input.equalsIgnoreCase("quit")) {
                     break;
                 }
+
                 strings.add(input);
             }
-            strings.sort((a, b) -> a.compareTo(b));
+            strings.sort(String::compareTo);
             System.out.println(strings);
         }
     }
